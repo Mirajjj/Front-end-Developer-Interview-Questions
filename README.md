@@ -102,6 +102,27 @@ This file contains a number of front-end interview questions that can be used wh
 #### JS Questions:
 
 * Explain event delegation
+##### Definition
+Capturing and bubbling allow to implement one of most powerful event handling patterns called event delegation.
+
+The idea is that if we have a lot of elements handled in a similar way, then instead of assigning a handler to each of them – we put a single handler on their common ancestor.
+
+In the handler we get ```event.target```, see where the event actually happened and handle it.
+
+##### The algorithm
+1. Put a single handler on the container.
+2. In the handler – check the source element event.target.
+3. If the event happened inside an element that interests us, then handle the event.
+##### Benefits
+1. Simplifies initialization and saves memory: no need to add many handlers.
+2. Less code: when adding or removing elements, no need to add/remove handlers.
+3. DOM modifications: we can mass add/remove elements with innerHTML and alike.
+##### The delegation has its limitations of course
+1. First, the event must be bubbling. Some events do not bubble. Also, low-level handlers should not use ```event.stopPropagation()```.
+2. Second, the delegation may add CPU load, because the container-level handler reacts on events in any place of the container, no matter if they interest us or not. But usually the load is negligible, so we don’t take it into account.
+
+Source: https://javascript.info/event-delegation
+
 * Explain how `this` works in JavaScript
 * Explain how prototypal inheritance works
 * What do you think of AMD vs CommonJS?
