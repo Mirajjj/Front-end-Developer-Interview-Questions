@@ -102,8 +102,19 @@ This file contains a number of front-end interview questions that can be used wh
 #### JS Questions:
 
 * Explain event delegation
-##### Definition
-Capturing and bubbling allow to implement one of most powerful event handling patterns called event delegation.
+##### Definitions
+**Event** is an action or occurrence detected by a program. Events can be user actions, such as clicking a mouse button or pressing a key, or system occurrences, such as running out of memory.
+
+**Event Propagation** is the process of calling all the listeners for the given event type, attached to the nodes on the branch. Each listener will be called with an event object that gathers information relevant to the event.
+
+The propagation is bidirectional, from the window to the event target and back. This propagation can be divided into three phases:
+1. From the window to the event target parent: this is the capture phase
+2. The event target itself: this is the target phase
+3. From the event target parent back to the window: the bubble phase
+
+![Event Propagation](https://dab1nmslvvntp.cloudfront.net/wp-content/uploads/2017/05/1495534508eventflow.svg)
+
+Capturing and bubbling allow to implement one of most powerful event handling patterns called **Event Delegation**.
 
 The idea is that if we have a lot of elements handled in a similar way, then instead of assigning a handler to each of them – we put a single handler on their common ancestor.
 
@@ -120,6 +131,8 @@ In the handler we get ```event.target```, see where the event actually happened 
 ##### The delegation has its limitations of course
 1. First, the event must be bubbling. Some events do not bubble. Also, low-level handlers should not use ```event.stopPropagation()```.
 2. Second, the delegation may add CPU load, because the container-level handler reacts on events in any place of the container, no matter if they interest us or not. But usually the load is negligible, so we don’t take it into account.
+
+Source: https://www.sitepoint.com/event-bubbling-javascript/ 
 
 Source: https://javascript.info/event-delegation
 
