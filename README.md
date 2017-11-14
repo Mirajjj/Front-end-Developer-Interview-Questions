@@ -137,6 +137,36 @@ Source: https://www.sitepoint.com/event-bubbling-javascript/
 Source: https://javascript.info/event-delegation
 
 * Explain how `this` works in JavaScript
+
+**this** is the current execution context of a function. The language has 4 function invocation types:
+1. function invocation: ```alert('Hello World!')```
+
+_**this** is the **global object** in a function invocation_
+
+if 'use strct'
+
+_**this** is the **undefined** in a function invocation_
+
+2. method invocation: ```console.log('Hello World!')```
+
+_**this** is the **object that owns the method** in a method invocation_
+
+3. constructor invocation: ```new RegExp('\\d')```
+
+_**this** is the **newly created object** in a constructor invocation_\
+
+4. indirect invocation: ```alert.call(undefined, 'Hello World!')```
+
+_**this** is **the first argument of .call() or .apply()** in an indirect invocation_
+
+ES6
+
+5. this in () => {} functions
+
+_**this** is **the enclosing context** where the arrow function is defined
+
+Source: https://dmitripavlutin.com/gentle-explanation-of-this-in-javascript/
+
 * Explain how prototypal inheritance works
 * What do you think of AMD vs CommonJS?
 * Explain why the following doesn't work as an IIFE: `function foo(){ }();`.
