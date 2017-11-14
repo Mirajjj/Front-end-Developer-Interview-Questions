@@ -99,9 +99,9 @@ This file contains a number of front-end interview questions that can be used wh
 * Have you ever worked with retina graphics? If so, when and what techniques did you use?
 * Is there any reason you'd want to use `translate()` instead of *absolute positioning*, or vice-versa? And why?
 
-#### JS Questions:
+## JS Questions:
 
-* Explain event delegation
+### Explain event delegation
 ##### Definitions
 **Event** is an action or occurrence detected by a program. Events can be user actions, such as clicking a mouse button or pressing a key, or system occurrences, such as running out of memory.
 
@@ -136,7 +136,7 @@ Source: https://www.sitepoint.com/event-bubbling-javascript/
 
 Source: https://javascript.info/event-delegation
 
-* Explain how `this` works in JavaScript
+### Explain how `this` works in JavaScript
 
 **this** is the current execution context of a function. The language has 4 function invocation types:
 1. function invocation: ```alert('Hello World!')```
@@ -167,7 +167,7 @@ _**this** is **the enclosing context** where the arrow function is defined
 
 Source: https://dmitripavlutin.com/gentle-explanation-of-this-in-javascript/
 
-* Explain how prototypal inheritance works
+### Explain how prototypal inheritance works
 * What do you think of AMD vs CommonJS?
 * Explain why the following doesn't work as an IIFE: `function foo(){ }();`.
   * What needs to be changed to properly make it an IIFE?
