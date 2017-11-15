@@ -168,6 +168,29 @@ _**this** is **the enclosing context** where the arrow function is defined
 Source: https://dmitripavlutin.com/gentle-explanation-of-this-in-javascript/
 
 ## Explain how prototypal inheritance works
+
+### Definition
+
+**What’s Prototype?**
+
+Almost all objects in JavaScript have the prototype property. By using it and more specifically the prototype chain we can mimic inheritance. The prototype is a reference to another object and it is used whenever JS can’t find the property you’re looking for on the current object. Simply put, whenever you call a property on an object and it doesn’t exist, JavaScript will go to the prototype object and look for it there. If it finds it it will use it, if not it will go to that object’s property and look there. This can bubble up all the way to Object.prototype before returning undefined. This is the essence of the prototype chain and the behavior that sits behind JavaScript’s inheritance.
+
+**Class Inheritance**: A class is like a blueprint — a description of the object to be created. Classes inherit from classes and create subclass relationships: hierarchical class taxonomies.
+
+**Prototypal Inheritance**: A prototype is a working object instance. Objects inherit directly from other objects.
+
+ There are three different kinds of prototypal OO inheritace.
+ 
+ 1. **Concatenative inheritance**: The process of inheriting features directly from one object to another by copying the source objects properties. In JavaScript, source prototypes are commonly referred to as mixins.
+ 
+ 2. **Prototype delegation**: In JavaScript, an object may have a link to a prototype for delegation. If a property is not found on the object, the lookup is delegated to the delegate prototype, which may have a link to its own delegate prototype, and so on up the chain until you arrive at ```Object.prototype```, which is the root delegate. 
+ 
+ 3. **Functional inheritance**: In JavaScript, any function can create an object. When that function is not a constructor (or `class`), it’s called a factory function.
+
+Source: https://medium.com/javascript-scene/master-the-javascript-interview-what-s-the-difference-between-class-prototypal-inheritance-e4cd0a7562e9
+
+Source: https://hackernoon.com/understanding-javascript-prototype-and-inheritance-d55a9a23bde2
+
 * What do you think of AMD vs CommonJS?
 * Explain why the following doesn't work as an IIFE: `function foo(){ }();`.
   * What needs to be changed to properly make it an IIFE?
