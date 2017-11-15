@@ -191,7 +191,10 @@ Source: https://medium.com/javascript-scene/master-the-javascript-interview-what
 
 Source: https://hackernoon.com/understanding-javascript-prototype-and-inheritance-d55a9a23bde2
 
-* What do you think of AMD vs CommonJS?
+## What do you think of AMD vs CommonJS?
+
+Source: https://auth0.com/blog/javascript-module-systems-showdown/
+
 * Explain why the following doesn't work as an IIFE: `function foo(){ }();`.
   * What needs to be changed to properly make it an IIFE?
 * What's the difference between a variable that is: `null`, `undefined` or undeclared?
