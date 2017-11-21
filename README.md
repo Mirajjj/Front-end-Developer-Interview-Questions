@@ -299,8 +299,41 @@ CommonJS modules were designed with server development in mind. Naturally, the A
 
 Source: https://auth0.com/blog/javascript-module-systems-showdown/
 
-* Explain why the following doesn't work as an IIFE: `function foo(){ }();`.
-  * What needs to be changed to properly make it an IIFE?
+## Explain why the following doesn't work as an IIFE: `function foo(){ }();`.
+### What needs to be changed to properly make it an IIFE?
+
+Because foo isn’t being called
+
+This is a function **definition**, it defines foo. But it’s not a function **expression** - that is, it’s not understood by the JS parser to actually call a function.
+
+```javascript 
+function foo(){
+} // ok, done with that function definition
+  // (silly human left off the semicolon, how embarrassing!)
+
+(); // Are they trying to call something? What’s the function’s name?
+    // PARSE ERROR
+```
+
+In order to prep the parser that we're actually dealing with a function expression we have to wrap things up in () like so:
+
+```javascript 
+(
+  function foo(){
+  }()
+);
+```
+
+Now the parser reads this as:
+
+```javascript
+( // oh goody, we're going to call some function expressions!
+  function foo(){ // here's the function definition
+  }() // and here's where the function is actually called
+);
+```
+
+Source: http://lucybain.com/blog/2014/immediately-invoked-function-expression/
 * What's the difference between a variable that is: `null`, `undefined` or undeclared?
   * How would you go about checking for any of these states?
 * What is a closure, and how/why would you use one?
