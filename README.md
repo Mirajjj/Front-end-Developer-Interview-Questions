@@ -183,9 +183,60 @@ Almost all objects in JavaScript have the prototype property. By using it and mo
  
  1. **Concatenative inheritance**: The process of inheriting features directly from one object to another by copying the source objects properties. In JavaScript, source prototypes are commonly referred to as mixins.
  
+ ```javascript
+ const proto = {
+  hello: function hello() {
+    return `Hello, my name is ${ this.name }`;
+  }
+};
+
+const george = Object.assign({}, proto, {name: 'George'});
+
+const msg = george.hello();
+
+console.log(msg); // Hello, my name is George
+ ```
+ 
  2. **Prototype delegation**: In JavaScript, an object may have a link to a prototype for delegation. If a property is not found on the object, the lookup is delegated to the delegate prototype, which may have a link to its own delegate prototype, and so on up the chain until you arrive at ```Object.prototype```, which is the root delegate. 
  
+ ```javascript
+ function A() {
+  this.hello = function() {
+    console.log('A new function is created in memory every time');
+    console.log('an instance of A is created');
+  };
+}
+
+function B() { }
+B.prototype.hello = function() {
+  console.log('Only one function is created and every instance');
+  console.log('of B shares this one function');
+};
+ ```
+ 
  3. **Functional inheritance**: In JavaScript, any function can create an object. When that function is not a constructor (or `class`), it’s called a factory function.
+ 
+ ```javascript
+ // Base object constructor function
+function base(spec) {
+    var that = {}; // Create an empty object
+    that.name = spec.name; // Add it a "name" property
+    return that; // Return the object
+}
+
+// Construct a child object, inheriting from "base"
+function child(spec) {
+    var that = base(spec); // Create the object through the "base" constructor
+    that.sayHello = function() { // Augment that object
+        return 'Hello, I\'m ' + that.name;
+    };
+    return that; // Return it
+}
+
+// Usage
+var object = child({ name: 'a functional object' });
+result.textContent = object.sayHello();
+```
 
 Source: https://medium.com/javascript-scene/master-the-javascript-interview-what-s-the-difference-between-class-prototypal-inheritance-e4cd0a7562e9
 
