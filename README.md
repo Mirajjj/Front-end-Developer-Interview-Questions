@@ -218,6 +218,34 @@ CommonJS modules were designed with server development in mind. Naturally, the A
 
 5. Hard to analyze for static code analyzers.
 
+### Asynchronous Module Definition (AMD)
+
+"The main difference between AMD and CommonJS lies in its support for asynchronous module loading."
+
+**PROS** 
+
+1. Asynchronous loading (better startup times).
+
+2. Circular dependencies are supported.
+
+3. Compatibility for ```require``` and ```exports```.
+
+4. Dependency management fully integrated.
+
+5. Modules can be split in multiple files if necessary.
+
+6. Constructor functions are supported.
+
+7. Plugin support (custom loading steps).
+
+**CONS**
+
+1. Slightly more complex syntactically.
+
+2. Loader libraries are required unless transpiled.
+
+3. Hard to analyze for static code analyzers.
+
 Source: https://auth0.com/blog/javascript-module-systems-showdown/
 
 * Explain why the following doesn't work as an IIFE: `function foo(){ }();`.
