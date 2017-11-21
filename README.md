@@ -334,8 +334,33 @@ Now the parser reads this as:
 ```
 
 Source: http://lucybain.com/blog/2014/immediately-invoked-function-expression/
-* What's the difference between a variable that is: `null`, `undefined` or undeclared?
-  * How would you go about checking for any of these states?
+
+## What's the difference between a variable that is: `null`, `undefined` or undeclared? How would you go about checking for any of these states?
+  
+  ### Definition
+  
+  **Null** means an empty or non-existent value. Null is assigned, and explicitly means nothing.
+  
+  **Undefined** means a variable has been declared, but the value of that variable has not yet been defined. 
+  
+  **null** is an assigned value. It means nothing.
+  **undefined** means a variable has been declared but not defined yet.
+  **null** is an object. **undefined** is of type **undefined**.
+  **null** !== undefined but **null** == **undefined**.
+  
+  ```javascript
+
+  typeof value === 'undefined'
+  
+  typeof value === 'object' && !value
+  
+  //or 
+  
+  value === null
+  
+  ```
+  
+  Source: https://codeburst.io/javascript-whats-the-difference-between-null-undefined-37793b5bfce6
 * What is a closure, and how/why would you use one?
 * Can you describe the main difference between a `forEach` loop and a `.map()` loop and why you would pick one versus the other?
 * What's a typical use case for anonymous functions?
