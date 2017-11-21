@@ -193,6 +193,31 @@ Source: https://hackernoon.com/understanding-javascript-prototype-and-inheritanc
 
 ## What do you think of AMD vs CommonJS?
 
+### CommonJS
+CommonJS modules were designed with server development in mind. Naturally, the API is synchronous. In other words, modules are loaded at the moment and in the order they are required inside a source file.
+
+**PROS**
+
+1. Simple: a developer can grasp the concept without looking at the docs.
+
+2. Dependency management is integrated: modules require other modules and get loaded in the needed order.
+
+3. ```require``` can be called anywhere: modules can be loaded programmatically.
+
+4. Circular dependencies are supported.
+
+**CONS**
+
+1. Synchronous API makes it not suitable for certain uses (client-side).
+
+2. One file per module.
+
+3. Browsers require a loader library or transpiling.
+
+4. No constructor function for modules (Node supports this though).
+
+5. Hard to analyze for static code analyzers.
+
 Source: https://auth0.com/blog/javascript-module-systems-showdown/
 
 * Explain why the following doesn't work as an IIFE: `function foo(){ }();`.
