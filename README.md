@@ -344,9 +344,13 @@ Source: http://lucybain.com/blog/2014/immediately-invoked-function-expression/
   **Undefined** means a variable has been declared, but the value of that variable has not yet been defined. 
   
   **null** is an assigned value. It means nothing.
+  
   **undefined** means a variable has been declared but not defined yet.
+  
   **null** is an object. **undefined** is of type **undefined**.
+  
   **null** !== undefined but **null** == **undefined**.
+  
   
   ```javascript
 
