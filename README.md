@@ -492,8 +492,35 @@ Function.prototype.bind = function(ctx) {
 
 Source: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function/bind
 
-* When would you use `document.write()`?
-* What's the difference between feature detection, feature inference, and using the UA string?
+## When would you use `document.write()`?
+
+It seems that the only “approved” time to use document.write() is for third party code to be included (such as ads or Google Analytics). Since document.write() is always available (mostly) it is a good choice for third party vendors to use it to add their scripts. They don’t know what environment you're using, if jQuery is or isn’t available, or what your onload events are. And with document.write() they don’t have to.
+
+So don’t use it yourself, unless your working for the third party.
+
+Source: http://lucybain.com/blog/2015/js-document-write/
+
+## What's the difference between feature detection, feature inference, and using the UA string?
+
+These 3 are just practices of determining if a certain web technology feature exists in a user’s browser or environment. Though features may vary with not just modern web technology but with programming languages as well.
+
+**Feature Detection**
+
+Feature detection is just a way of determining if a feature exists in certain browsers. A good example is a modern HTML5 feature ‘Location’.
+
+**Feature Inference**
+
+Feature Inference is when you have determined a feature exists and assumed the next web technology feature you are implementing unto your app exists as well. Its usually bad practice to assume, so its better to explicitly specify features you want to detect and plan a fallback action.
+
+**UA String**
+
+UA String or User Agent String is a string text of data that each browsers send and can be access via navigator.userAgent. These “string text of data” contains information of the browser environment you are targeting.
+If you open your console and run
+
+Modernizr is a small piece of JavaScript code that automatically detects the availability of next-generation web technologies in your user’s browsers. Rather than blacklisting entire ranges of browsers based on “UA sniffing,” Modernizr uses feature detection to allow you to easily tailor your user’s experiences based on the actual capabilities of their browser.
+
+Source: https://medium.com/@rlynjb/js-interview-question-what-s-the-difference-between-feature-detection-feature-inference-and-76d2e4956a9b
+
 * Explain Ajax in as much detail as possible.
 * What are the advantages and disadvantages of using Ajax?
 * Explain how JSONP works (and how it's not really Ajax).
