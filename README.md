@@ -455,8 +455,43 @@ The new operator creates an instance of a user-defined object type or of one of 
 Source: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/new
 Source: https://www.sitepoint.com/function-expressions-vs-declarations/
 
-* What's the difference between `.call` and `.apply`?
-* Explain `Function.prototype.bind`.
+## What's the difference between `.call` and `.apply`?
+
+The call() method calls a function with a given this value and arguments provided individually.
+
+```javascript
+function.call(thisArg, arg1, arg2, ...)
+```
+
+The apply() method calls a function with a given this value, and arguments provided as an array
+
+```javascript
+func.apply(thisArg, [argsArray])
+```
+
+Source: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function/apply
+Source: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function/call
+
+## Explain `Function.prototype.bind`.
+
+The ```bind()``` method creates a new function that, when called, has its this keyword set to the provided value, with a given sequence of arguments preceding any provided when the new function is called.
+
+```javascript
+fun.bind(thisArg[, arg1[, arg2[, ...]]])
+```
+A simple, naive implementation of bind would be like:
+
+```javascript
+Function.prototype.bind = function(ctx) {
+    var fn = this;
+    return function() {
+        fn.apply(ctx, arguments);
+    };
+};
+```
+
+Source: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function/bind
+
 * When would you use `document.write()`?
 * What's the difference between feature detection, feature inference, and using the UA string?
 * Explain Ajax in as much detail as possible.
