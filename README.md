@@ -410,8 +410,18 @@ The idea here is to avoid transforming the original array, one of the pillars of
 
 Source: https://ryanpcmcquen.org/javascript/2015/10/25/map-vs-foreach-vs-for.html
 
-* What's a typical use case for anonymous functions?
-* How do you organize your code? (module pattern, classical inheritance?)
+## What's a typical use case for anonymous functions?
+
+Since Anonymous Functions are function expressions rather than the regular function declaration which are statements. Function expressions are more flexible. We can assign functions to variables, object properties, pass them as arguments to other functions, and even write a simple one line code enclosed in an anonymous functions.
+
+Source: https://medium.com/@rlynjb/js-interview-question-what-s-a-typical-use-case-for-anonymous-functions-54cf547b2a0e
+
+## How do you organize your code? (module pattern, classical inheritance?)
+
+# TODO
+
+Source: https://addyosmani.com/resources/essentialjsdesignpatterns/book/
+
 * What's the difference between host objects and native objects?
 * Difference between: `function Person(){}`, `var person = Person()`, and `var person = new Person()`?
 * What's the difference between `.call` and `.apply`?
