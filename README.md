@@ -422,8 +422,39 @@ Source: https://medium.com/@rlynjb/js-interview-question-what-s-a-typical-use-ca
 
 Source: https://addyosmani.com/resources/essentialjsdesignpatterns/book/
 
-* What's the difference between host objects and native objects?
-* Difference between: `function Person(){}`, `var person = Person()`, and `var person = new Person()`?
+## What's the difference between host objects and native objects?
+
+**Host Objects** are objects supplied by a certain environment. They are not always the same because each environment differs and contains host objects that accommodates execution of ECMAScript. Example, browser environment supplies objects such as window. While a node.js/server environment supplies objects such as NodeList.
+
+**Native Objects** or Built-in Objects are standard built-in objects provided by Javascript. Native objects is sometimes referred to as ‘Global Objects’ since they are objects Javascript has provided natively available for use.
+
+Source: https://medium.com/@rlynjb/js-interview-question-what-s-the-difference-between-host-objects-and-native-objects-b395f7c5fbf1
+
+## Difference between: `function Person(){}`, `var person = Person()`, and `var person = new Person()`?
+
+JavaScript has two different ways of creating functions. Function declarations have been used for a long time, but function expressions have been gradually taking over.
+
+```javascript
+function funcDeclaration() {
+    return 'A function declaration';
+}
+
+var funcExpression = function () {
+    return 'A function expression';
+}
+```
+
+Similar to the var statement, function declarations are hoisted to the top of other code. Function expressions aren’t hoisted, which allows them to retain a copy of the local variables from the scope where they were defined.
+
+```javascript
+new constructor[([arguments])]
+```
+
+The new operator creates an instance of a user-defined object type or of one of the built-in object types that has a constructor function.
+
+Source: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/new
+Source: https://www.sitepoint.com/function-expressions-vs-declarations/
+
 * What's the difference between `.call` and `.apply`?
 * Explain `Function.prototype.bind`.
 * When would you use `document.write()`?
