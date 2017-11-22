@@ -521,7 +521,11 @@ Modernizr is a small piece of JavaScript code that automatically detects the ava
 
 Source: https://medium.com/@rlynjb/js-interview-question-what-s-the-difference-between-feature-detection-feature-inference-and-76d2e4956a9b
 
-* Explain Ajax in as much detail as possible.
+## Explain Ajax in as much detail as possible.
+
+
+Source: https://medium.com/@morgan_ashley/front-end-developer-interview-question-03-4b8c94a42442
+
 * What are the advantages and disadvantages of using Ajax?
 * Explain how JSONP works (and how it's not really Ajax).
 * Have you ever used JavaScript templating?
