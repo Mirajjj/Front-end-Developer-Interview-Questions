@@ -365,8 +365,51 @@ Source: http://lucybain.com/blog/2014/immediately-invoked-function-expression/
   ```
   
   Source: https://codeburst.io/javascript-whats-the-difference-between-null-undefined-37793b5bfce6
-* What is a closure, and how/why would you use one?
-* Can you describe the main difference between a `forEach` loop and a `.map()` loop and why you would pick one versus the other?
+  
+## What is a closure, and how/why would you use one?
+
+### Definition
+
+A **closure** is the combination of a function bundled together (enclosed) with references to its surrounding state (the lexical environment). In other words, a closure gives you access to an outer function’s scope from an inner function. In JavaScript, closures are created every time a function is created, at function creation time.
+
+Source: https://medium.com/javascript-scene/master-the-javascript-interview-what-is-a-closure-b2f0d2152b36
+
+## Can you describe the main difference between a `forEach` loop and a `.map()` loop and why you would pick one versus the other?
+
+The ```forEach()``` method executes a provided function once for each array element.
+
+The ```map()``` method creates a new array with the results of calling a provided function on every element in the calling array.
+
+Let’s take a look at another example. Say we need to produce an array that adds 1 to each value in that array:
+
+```javascript
+var nums = [
+    5,
+    9,
+    7
+];
+```
+
+**Procedural style:**
+
+```javascript
+nums.forEach(function (num, index) {
+    return nums[index] = num + 1;
+});
+```
+
+**Functional style:**
+
+```javascript
+var oneBetterThanNums = nums.map(function (num) {
+    return num + 1;
+});
+```
+
+The idea here is to avoid transforming the original array, one of the pillars of functional design is to create something new when something changes.
+
+Source: https://ryanpcmcquen.org/javascript/2015/10/25/map-vs-foreach-vs-for.html
+
 * What's a typical use case for anonymous functions?
 * How do you organize your code? (module pattern, classical inheritance?)
 * What's the difference between host objects and native objects?
