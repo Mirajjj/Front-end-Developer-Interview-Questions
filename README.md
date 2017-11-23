@@ -745,16 +745,57 @@ console.log(typeof double); // Output: function
 Source: https://scotch.io/tutorials/understanding-hoisting-in-javascript
 
 
-* Describe event bubbling.
-* What's the difference between an "attribute" and a "property"?
-* Why is extending built-in JavaScript objects not a good idea?
-* Difference between document load event and document DOMContentLoaded event?
-* What is the difference between `==` and `===`?
+## What's the difference between an "attribute" and a "property"?
+
+**Property**
+
+JS DOM objects have properties. These properties are kind of like instance variables for the particular element. As such, a property can be different types (boolean, string, etc.).
+
+**Attribute**
+
+Attributes are in the HTML itself, rather than in the DOM. They are very similar to properties, but not quite as good. When a property is available it’s recommended that you work with properties rather than attributes. An attribute is only ever a string, no other type.
+
+Source: http://lucybain.com/blog/2014/attribute-vs-property/
+
+# Why is extending built-in JavaScript objects not a good idea?
+
+Changing the behaviour of an object that will only be used by your own code is fine. But when you change the behaviour of something that is also used by other code there is a risk you will break that other code.
+
+When it comes adding methods to the object and array classes in javascript, the risk of breaking something is very high, due to how javascript works. Long years of experience have taught me that this kind of stuff causes all kinds of terrible bugs in javascript.
+
+Source: http://lucybain.com/blog/2014/js-extending-built-in-objects/
+
+## Difference between document load event and document DOMContentLoaded event?
+
+The DOMContentLoaded event is fired when the document has been completely loaded and parsed, without waiting for stylesheets, images, and subframes to finish loading (the load event can be used to detect a fully-loaded page).
+
+Source: https://stackoverflow.com/questions/2414750/difference-between-domcontentloaded-and-load-events
+
+## What is the difference between `==` and `===`?
+
+```===``` checks for type and equality.
+
+```==``` only checks for equality.
+
+_If the two operands are not of the same type, JavaScript converts the operands then applies strict comparison. If either operand is a number or a boolean, the operands are converted to numbers if possible; else if either operand is a string, the other operand is converted to a string if possible. If both operands are objects, then JavaScript compares internal references which are equal when operands refer to the same object in memory._
+
+
+Source: http://lucybain.com/blog/2014/triple-vs-double-equals/
+
 * Explain the same-origin policy with regards to JavaScript.
-* Make this work:
+## Make this work:
+
 ```javascript
 duplicate([1,2,3,4,5]); // [1,2,3,4,5,1,2,3,4,5]
 ```
+easy
+
+```javascript
+function duplicate(array) {
+   return array.concat(array)
+}; // [1,2,3,4,5,1,2,3,4,5]
+```
+
 * Why is it called a Ternary expression, what does the word "Ternary" indicate?
 * What is `"use strict";`? what are the advantages and disadvantages to using it?
 * Create a for loop that iterates up to `100` while outputting **"fizz"** at multiples of `3`, **"buzz"** at multiples of `5` and **"fizzbuzz"** at multiples of `3` and `5`
