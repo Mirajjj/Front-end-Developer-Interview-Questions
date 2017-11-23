@@ -656,6 +656,26 @@ Source: http://rlynjb.github.io/wandrr/JS-Interview-Question-Explain-AJAX-in-as-
 Source: https://medium.com/@morgan_ashley/front-end-developer-interview-question-03-4b8c94a42442
 
 ## What are the advantages and disadvantages of using Ajax?
+
+**PROS**
+
+* Improved user experience
+* Asynchronous processing
+* Reduced server hits and network load
+* Platform and architecture neutrality
+* Multibrowser support
+* Faster page renders and improved response times
+
+**CONS**
+
+* Because the updates are done by JavaScript on the client, the state will not register in the browsers history, making it impossible to use the Back and Forward buttons to navigate between various states of the page.
+* For the same reason, a specific state can't be bookmarked by the user.
+* Data loaded through AJAX won't be indexed by any of the major search engines.
+* People using browsers without JavaScript support, or with JavaScript disabled, will not be able to use the functionality that you provide through AJAX.
+
+Source: http://www.informit.com/articles/article.aspx?p=1228495&seqNum=4
+Source: https://www.mindstick.com/blog/819/advantage-and-disadvantage-of-ajax
+
 * Explain how JSONP works (and how it's not really Ajax).
 * Have you ever used JavaScript templating?
   * If so, what libraries have you used?
