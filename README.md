@@ -674,12 +674,77 @@ Source: https://medium.com/@morgan_ashley/front-end-developer-interview-question
 * People using browsers without JavaScript support, or with JavaScript disabled, will not be able to use the functionality that you provide through AJAX.
 
 Source: http://www.informit.com/articles/article.aspx?p=1228495&seqNum=4
+
 Source: https://www.mindstick.com/blog/819/advantage-and-disadvantage-of-ajax
 
-* Explain how JSONP works (and how it's not really Ajax).
-* Have you ever used JavaScript templating?
-  * If so, what libraries have you used?
-* Explain "hoisting".
+## Explain how JSONP works (and how it's not really Ajax).
+
+JSONP stands for **J**ava**S**cript **O**ject **N**otation with **P**adding
+
+An ajax call is an actual HTTP request from your client directly to a server. Ajax calls can be synchronous (blocking until they complete) or asynchronous. Because of same-origin security protections, ajax calls can only be made to the same server that the web page came from unless the target server explicitly allows a cross origin request using CORS.
+
+JSONP calls are an interesting hack with the <script> tag that allows cross-origin communication. In a JSONP call, the client creates a script tag and puts a URL on it with an callback=xxxx query parameter on it. That script request (via the script tag insertion) is sent by the browser to the foreign server. The browser just thinks it's requesting some javascript code. The server then creates some special javascript for the purposes of this call and in that javascript that will get executed by the browser when it's returned, the server puts a function call to the function named in the callback=xxxx query parameter. By either defining variables of by passing data to that function, the server can communicate data back to the client. For JSONP, both client and server must cooperate on how the JSONP call works and how the data is defined. A client cannot make a JSONP call to a server that doesn't explicitly support JSONP because the exact right type of JSONP response has to be built by the server or it won't work.
+
+So, the two communication methods work completely differently. Only ajax calls can be synchronous. By the nature of the <script> tag insertion, JSONP calls are always asynchronous.
+
+In an Ajax call, the response comes back in a ajax event handler.
+
+In a JSONP call, the response comes when the returned Javascript calls a function of yours.
+
+In some ways, JSONP is a security hole that bypasses the cross-origin security mechanism. But, you can only call servers that explicitly choose to support a JSONP-like mechanism so if a server doesn't want you to be able to call it cross-origin, it can prevent it by not supporting JSONP. You can't make regular ajax calls to these other servers.
+
+Source: http://lucybain.com/blog/2015/how-does-jsonp-work/
+Source: https://stackoverflow.com/questions/10289789/i-dont-get-how-jsonp-is-any-different-from-ajax
+
+## Have you ever used JavaScript templating? If so, what libraries have you used?
+  
+  1. Mustache
+  2. Underscore Templates
+  3. Embedded JS Templates
+  4. HandlebarsJS
+  5. Jade templating
+  6. AngularJS tempaltes
+  
+  Source: http://www.creativebloq.com/web-design/templating-engines-9134396
+
+## Explain "hoisting".
+
+**Hoisting** is a JavaScript mechanism where variables and function declarations are moved to the top of their scope before code execution.
+
+_Of note however, is the fact that the hoisting mechanism only moves the declaration. The assignments are left in place._
+
+**Order of precedence**
+
+1. Variable assignment takes precedence over function declaration
+2. Function declarations take precedence over variable declarations
+
+Function declarations are hoisted over variable declarations but not over variable assignments.
+
+```javascript
+var double = 22;
+
+function double(num) {
+  return (num*2);
+}
+
+console.log(typeof double); // Output: number
+```
+
+Function declarations over variable declarations
+
+```javascript
+var double;
+
+function double(num) {
+  return (num*2);
+}
+
+console.log(typeof double); // Output: function
+```
+
+Source: https://scotch.io/tutorials/understanding-hoisting-in-javascript
+
+
 * Describe event bubbling.
 * What's the difference between an "attribute" and a "property"?
 * Why is extending built-in JavaScript objects not a good idea?
