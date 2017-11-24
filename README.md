@@ -856,10 +856,36 @@ Source: http://lucybain.com/blog/2014/js-use-strict/
 
 ## Create a for loop that iterates up to `100` while outputting **"fizz"** at multiples of `3`, **"buzz"** at multiples of `5` and **"fizzbuzz"** at multiples of `3` and `5`
 
+```javascript
+for(var i =0; i < 100; i++) {
+	var statement1 = (i % 3 === 0) ? 'fizz' : ''
+  var statement2 = (i % 5 === 0) ? 'buzz' : ''
+ 	
+  console.log(i, statement1 + statement2)
+}
+```
 
-* Why is it, in general, a good idea to leave the global scope of a website as-is and never touch it?
-* Why would you use something like the `load` event? Does this event have disadvantages? Do you know any alternatives, and why would you use those?
-* Explain what a single page app is and how to make one SEO-friendly.
+Source: https://stackoverflow.com/questions/13845437/from-1-to-100-print-ping-if-multiple-of-3-pong-if-multiple-of-5-or-else-p
+
+## Why is it, in general, a good idea to leave the global scope of a website as-is and never touch it?
+
+* It’s harder to read the code and reason about it when variables seem to appear out of thin air (but really from the global scope).
+* Anyone can update a global variable from any point in the program at any time (and from any thread if there’s more than one going).
+* General code smell - if you're too lazy to put the variable only where it needs to be then what other corners are you cutting?
+* It’s probable that you'll encounter global variable name clashes. Since there’s only one namespace you're more likely to double up on a variable name.
+
+Source: http://lucybain.com/blog/2014/js-dont-touch-global-scope/
+
+# Why would you use something like the `load` event? Does this event have disadvantages? Do you know any alternatives, and why would you use those?
+
+The load event fires at the end of the document loading process. At this point, all of the objects in the document are in the DOM, and all the images, scripts, links and sub-frames have finished loading. To execute anything post document load, we fire these events. ‘DOMContentLoaded’ or jQuery’s loaded are another options. 
+
+Source: https://medium.com/@nupoor_neha/javascript-front-end-interview-questions-1cbc5e32792b
+
+# Explain what a single page app is and how to make one SEO-friendly.
+
+Source: https://www.codeschool.com/beginners-guide-to-web-development/single-page-applications
+
 * What is the extent of your experience with Promises and/or their polyfills?
 * What are the pros and cons of using Promises instead of callbacks?
 * What are some of the advantages/disadvantages of writing JavaScript code in a language that compiles to JavaScript?
