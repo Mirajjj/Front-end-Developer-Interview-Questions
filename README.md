@@ -482,11 +482,15 @@ fun.bind(thisArg[, arg1[, arg2[, ...]]])
 A simple, naive implementation of bind would be like:
 
 ```javascript
-Function.prototype.bind = function(ctx) {
-    var fn = this;
-    return function() {
-        fn.apply(ctx, arguments);
-    };
+Function.prototype.bind = function(context){
+    var	that = this,
+        slicedArgs = Array.prototype.splice.call(arguments, 1),
+        bounded = function (){
+            var newArgs = slicedArgs.concat(Array.prototype.splice.call(arguments));
+            return that.apply(context,newArgs);
+        }
+    bounded.prototype = that.prototype;
+    return bounded;
 };
 ```
 
@@ -782,7 +786,23 @@ _If the two operands are not of the same type, JavaScript converts the operands 
 
 Source: http://lucybain.com/blog/2014/triple-vs-double-equals/
 
-* Explain the same-origin policy with regards to JavaScript.
+## Explain the same-origin policy with regards to JavaScript.
+
+The “origin” is the same if three things are the same: the protocol (http vs. https), the domain (subdomain.yoursite.com vs. yoursite.com vs. google.com), and the port (:80 vs. :4567). If all three of these line up, then JS views the sites as the same, and code is executed. If any of them are different then the code is marked as potentially malicious and is not run.
+
+Internet Explorer has two major exceptions when it comes to same origin policy
+
+* Trust Zones: if both domains are in highly trusted zone e.g, corporate domains, then the same origin limitations are not applied 
+* Port: IE doesn't include port into Same Origin components, therefore http://company.com:81/index.html and http://company.com/index.html are considered from same origin and no restrictions are applied.\
+
+These exceptions are non-standard and not supported in any other browser but would be helpful if developing an app for Windows RT (or) IE based web application.
+
+The same-origin policy helps prevent malicious attacks by stopping code from another site executing on your site. An attacks like this is known as a Cross Site Scripting attack.
+
+Source: http://lucybain.com/blog/2014/same-origin-policy/
+
+Source: https://developer.mozilla.org/en-US/docs/Web/Security/Same-origin_policy#Changing_origin
+
 ## Make this work:
 
 ```javascript
@@ -796,9 +816,47 @@ function duplicate(array) {
 }; // [1,2,3,4,5,1,2,3,4,5]
 ```
 
-* Why is it called a Ternary expression, what does the word "Ternary" indicate?
-* What is `"use strict";`? what are the advantages and disadvantages to using it?
-* Create a for loop that iterates up to `100` while outputting **"fizz"** at multiples of `3`, **"buzz"** at multiples of `5` and **"fizzbuzz"** at multiples of `3` and `5`
+## Why is it called a Ternary expression, what does the word "Ternary" indicate?
+
+A **un**ary operand accepts one parameter, e.g. -1, where - is the operand, and 1 is the parameter.
+
+A **bin**ary operand accepts two parameters, e.g. 2 + 3, where + is the operand, and 2 and 3 are the parameters.
+
+So a **tern**ary operand accepts three parameters.
+
+In programming the ternary operand we use is a rewrite of an if statement. Before we write an actual ternary, we'll just take a quick look at an if statement:
+
+```javascript
+if(conditional) { // one
+    truethy_block // two
+} else {
+    falsey_block // three
+}
+```
+
+You can see there are three sections to an if statement. Let’s write them as a property ternary expression:
+
+```javascript
+conditional ? truethy_block : falsey_block
+```
+
+Source: http://lucybain.com/blog/2014/js-ternary/
+
+## What is `"use strict";`? what are the advantages and disadvantages to using it?
+
+If you put "use strict"; at the top of your code (or function), then the JS is evaluated in strict mode. Strict mode throws more errors and disables some features in an effort to make your code more robust, readable, and accurate.
+
+Strict mode helps out in a couple ways:
+
+* It catches some common coding bloopers, throwing exceptions.
+* It prevents, or throws errors, when relatively “unsafe” actions are taken (such as gaining access to the global object).
+* It disables features that are confusing or poorly thought out.
+
+Source: http://lucybain.com/blog/2014/js-use-strict/
+
+## Create a for loop that iterates up to `100` while outputting **"fizz"** at multiples of `3`, **"buzz"** at multiples of `5` and **"fizzbuzz"** at multiples of `3` and `5`
+
+
 * Why is it, in general, a good idea to leave the global scope of a website as-is and never touch it?
 * Why would you use something like the `load` event? Does this event have disadvantages? Do you know any alternatives, and why would you use those?
 * Explain what a single page app is and how to make one SEO-friendly.
