@@ -1,4 +1,4 @@
-# Front-end Job Interview Questions
+# Front-end Job Interview Questions & Answers
 
 This file contains a number of front-end interview questions that can be used when vetting potential candidates. It is by no means recommended to use every single question here on the same candidate (that would take hours). Choosing a few items from this list should help you vet the intended skills you require.
 
@@ -9,7 +9,7 @@ This file contains a number of front-end interview questions that can be used wh
   1. [General Questions](#general-questions)
   1. [HTML Questions](#html-questions)
   1. [CSS Questions](#css-questions)
-  1. [JS Questions](#js-questions)
+  1. [JS Questions & Answers](#js-questions)
   1. [Testing Questions](#testing-questions)
   1. [Performance Questions](#performance-questions)
   1. [Network Questions](#network-questions)
@@ -884,9 +884,90 @@ Source: https://medium.com/@nupoor_neha/javascript-front-end-interview-questions
 
 # Explain what a single page app is and how to make one SEO-friendly.
 
+A single-page application (SPA) is a web application or web site that interacts with the user by dynamically rewriting the current page rather than loading entire new pages from a server. This approach avoids interruption of the user experience between successive pages, making the application behave more like a desktop application. In a SPA, either all necessary code – HTML, JavaScript, and CSS – is retrieved with a single page load, or the appropriate resources are dynamically loaded and added to the page as necessary, usually in response to user actions. The page does not reload at any point in the process, nor does control transfer to another page, although the location hash or the HTML5 History API can be used to provide the perception and navigability of separate logical pages in the application. [Wikipedia](https://en.wikipedia.org/wiki/Single-page_application)
+
+Examples:
+
+* [Angular](https://angularjs.org/)
+* [Ember](https://www.emberjs.com/)
+* [Vue](https://vuejs.org/)
+* [React](https://reactjs.org/)
+* [Backbone](http://backbonejs.org/)
+* etc.
+
+### SEO for Single Page Apps
+
+Google's indexing crawlers have traditionally ignored content that is served by javascript. Google considers a single web page as a unique block of content with semantically valid html that corresponds to a unique URL. This makes the page worthy of indexing and, subsequently, ranking. The classic issue with SPAs is that the content on the page changes without the web url changing accordingly.
+
+For example, let's say you had an initial website homepage "A" load in your browser. Then once homepage "A" is loaded, you click on another page link that shows you a new webpage, page "B". Only this time, page B loads entirely by javascript. Google crawlers would only recognize homepage page "A" as a valid page, as it was the result of a traditional, server-side page load. To google, the javascript loaded page "B" doesn't exist. But since website visibility is such a critical component to the success of a given web property, it makes no sense to build a beautiful SPA site if no one can find it in search results.
+
+This problem of Google not indexing javascript pages is a persistent one for SPA sites and even for traditional sites that rely heavily on javascript. Attempts at solutions initially have proved awkward at best. 
+
+Twitter, which has relied heavily on AJAX technology, came up with the idea of javascript loaded urls to have a '#!' url segment to make the url unique to correspond to a given tweeted comment. However, this became known as the "hash bang" tag and it was far from a perfect solution; using '#!' in a url was not in accordance with World Wide Web Consortium (W3C) standards, as it didn't truly mark the path to a real resource location. The '#!' also made things difficult for developers since they had to work with these unusual characters in backend developement scenarios. Consequently, the hash bang url was a flop despite being initially recommended by Google, oddly enough, as a quick fix to the SEO, javascript page dilemma.
+
+The new feature of HTML 5 **"the Push State"** offers gives a huge boost to SPAs when it comes to being search engine optimized. However, it doesn't exactly qualify as a quick fix. Going back to our previous example, a user sees the new url mydomain.com/new-page.html magically appear via pushState in the browser window, accompanied by new, ajax loaded page content.That's all well and good, but what happens if the user then hits enter and refreshes the page with that new url?
+
+So all urls that you intend to magically load via pushState will also need to exist as real web pages. Once this happens, Google will then properly acknowlege and index your Single Page Application website as it would any other site. While this involves more grunt work on the part of the developer, the reward offers the best of all worlds: a SPA site that offers a fast and fluid user experience, SEO compliance, and safe, server side fallback urls that operate regardless of browser versions.
+
 Source: https://www.codeschool.com/beginners-guide-to-web-development/single-page-applications
 
-* What is the extent of your experience with Promises and/or their polyfills?
+Source: https://adkgroup.com/insights/single-page-applications-spa-and-seo-problem
+
+# What is the extent of your experience with Promises and/or their polyfills?
+
+JavaScript **Promises** are a new addition to ECMAscript 6 that aims to provide a cleaner, more intuitive way to deal with the completion (or failure) of asynchronous tasks. Up until JavaScript Promises, that job is taken on by JavaScript event handlers (ie: image.onload) and callback functions, popularized by libraries such as jQuery and Node.js, with varying degrees of frustration. Event handlers work well with individual elements, but what if you wanted to, for example, be notified when a collection of images have all been loaded or the order in which they happened? Call back functions that you pass as the last parameter to methods that support it such as jQuery's animate() function perform their job admirably for running custom code when a task is complete, but what if the custom code in itself also needs to call animate() with another call back function, and so on? You end up with what's called "callback hell", or a growing stack of call back functions resembling the Tower of Babel.
+
+A **polyfill**, or polyfiller, is a piece of code (or plugin) that provides the technology that you, the developer, expect the browser to provide natively. Flattening the API landscape if you will.
+
+The idea of the Polyfill is to provide support for the Promise API in out dated browsers, but using the same coding flow:
+
+```javascript
+var prom = new Promise(function(resolve, reject) {
+    // do a thing, possibly async, then…
+
+    if (/* everything turned out fine */) {
+        resolve("Stuff worked!");
+    }  else {
+        reject(new Error("It broke"));
+    }
+});
+
+
+// For IE +10
+prom.then(function(result) {
+    // Do something when async done
+}).catch(function(err){
+    // Rejected
+});
+
+// Or for IE-9, where catch is a reserved keyword
+// For IE +10
+prom.then(function(result) {
+    // Do something when async done
+}, function(err){
+    // Rejected
+});
+```
+
+With any of the following Polyfills, you'll be able to use the Promise API in any old webbrowser in the same way you do with new browsers.
+
+Collection of 5 of the best Polyfill for the Promise API in Javascript.
+
+* [ES6 Promise Polyfill](https://github.com/lahmatiy/es6-promise-polyfill)
+* [Promise Polyfill](https://github.com/taylorhakes/promise-polyfill)
+* [BluebirdJS](https://github.com/petkaantonov/bluebird)
+* [Native Promise Only](https://github.com/getify/native-promise-only)
+* [ES-6 Promise (subset of rsvp.js)](https://github.com/stefanpenner/es6-promise)
+
+### Implementing Promise on your own
+
+
+Source: https://www.promisejs.org/implementing/
+
+Source: http://www.javascriptkit.com/javatutors/javascriptpromises.shtml
+
+Source: https://ourcodeworld.com/articles/read/316/top-5-best-javascript-promises-polyfills
+
 * What are the pros and cons of using Promises instead of callbacks?
 * What are some of the advantages/disadvantages of writing JavaScript code in a language that compiles to JavaScript?
 * What tools and techniques do you use debugging JavaScript code?
